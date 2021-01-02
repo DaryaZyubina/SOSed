@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">SOSed</string>
-    <string name="title_hcs">ЖКХ</string>
-    <string name="title_ad">От жильцов</string>
-    <string name="title_message">Сообщения</string>
+    <string name="title_icon_hcs">ЖКХ</string>
+    <string name="title_icon_ad">От жильцов</string>
+    <string name="title_icon_message">Сообщения</string>
+    <string name="title_hcs">Объявления ЖКХ</string>
+    <string name="title_ad">Объявления жильцов</string>
+    <string name="title_home">Главная</string>
+    <string name="title_profile">Профиль</string>
+
 </resources>
