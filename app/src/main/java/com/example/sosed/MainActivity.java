@@ -3,7 +3,6 @@ package com.example.sosed;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +19,10 @@ import androidx.fragment.app.Fragment;
 import com.example.sosed.Ad.StartAdFragment;
 import com.example.sosed.HCS.HCSFragment;
 import com.example.sosed.Message.MessageFragment;
+import com.example.sosed.auth.AuthFBActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         //drawerLayout = findViewById(R.id.drawer_layout);
 
 
+        checkCurrentUser();
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         //I added this if statement to keep the selected fragment when rotating the device
@@ -44,6 +46,18 @@ public class MainActivity extends AppCompatActivity {
                     new HCSFragment()).commit();
         }
     }
+
+    public void checkCurrentUser() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+        } else {
+            redirectActivity(this, AuthFBActivity.class);
+        }
+
+        // [END check_current_user]
+    }
+
 
     public void ClickMenu(){
         openDrawer(drawerLayout);
