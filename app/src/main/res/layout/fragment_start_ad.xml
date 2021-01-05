@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
 
-    tools:context=".Ad.StartAdFragment">
+    tools:context="ru.nsk.nsu.sosed.representation.Ad.StartAdFragment">
 
     <ListView
         android:layout_width="match_parent"
