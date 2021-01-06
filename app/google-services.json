@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "642639531246",
+    "project_id": "sosed-59643",
+    "storage_bucket": "sosed-59643.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642639531246:android:33f1115a227aafdebaf7ff",
+        "android_client_info": {
+          "package_name": "com.example.sosed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "642639531246-a9g8eqh0k3pei2ng6r7td6rqfp6oj19l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPMSisckKf6VoGYfIDqZWzV1bdmKrpFg4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "642639531246-a9g8eqh0k3pei2ng6r7td6rqfp6oj19l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
