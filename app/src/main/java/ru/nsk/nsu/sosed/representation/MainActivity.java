@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -19,6 +20,7 @@ import ru.nsk.nsu.sosed.representation.Message.MessageFragment;
 
 import com.example.sosed.R;
 
+import ru.nsk.nsu.sosed.representation.Profile.ProfileFragment;
 import ru.nsk.nsu.sosed.representation.auth.AuthFBActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -106,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.nav_message:
                             selectedFragment = new MessageFragment();
+                            break;
+                        case R.id.nav_profile:
+                            selectedFragment = new ProfileFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

@@ -7,5 +7,7 @@
     <string name="title_ad">Объявления жильцов</string>
     <string name="title_home">Главная</string>
     <string name="title_profile">Профиль</string>
+    <string name="title_email">Электронная почта</string>
+    <string name="title_check">Разрешить присылать мне сообщения по номеру квартиры</string>
 
 </resources>
