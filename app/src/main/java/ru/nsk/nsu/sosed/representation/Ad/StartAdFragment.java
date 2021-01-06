@@ -22,9 +22,7 @@ public class StartAdFragment  extends Fragment {
         getActivity().setTitle(getResources().getString(R.string.title_ad));
 
         listView = v.findViewById(R.id.listAdView);
-        final String[] values = new String[]{
-          "Найденные вещи", "Потерянные вещи", "Другие объявления"
-        };
+        final String[] values = getResources().getStringArray(R.array.ad_categories);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(v.getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, values);
         listView.setAdapter(adapter);

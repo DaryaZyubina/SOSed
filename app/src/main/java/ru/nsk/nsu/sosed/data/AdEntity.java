@@ -8,6 +8,7 @@ public class AdEntity {
     private String text;
     private String imageUrl;
     private String authorId;
+    private int topic;
     private long createdDate;
 
     public AdEntity() {
@@ -43,6 +44,14 @@ public class AdEntity {
 
     public void setAuthorId(String authorId) {
         this.authorId = authorId;
+    }
+
+    public int getTopic() {
+        return topic;
+    }
+
+    public void setTopic(int topic) {
+        this.topic = topic;
     }
 
     public long getCreatedDate() {

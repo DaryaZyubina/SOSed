@@ -7,6 +7,7 @@ public class Ad {
     private String text;
     private String imageUrl;
     private String author;
+    private int topic;
     private Date createdDate;
 
     public Ad() {
@@ -42,6 +43,14 @@ public class Ad {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public int getTopic() {
+        return topic;
+    }
+
+    public void setTopic(int topic) {
+        this.topic = topic;
     }
 
     public Date getCreatedDate() {

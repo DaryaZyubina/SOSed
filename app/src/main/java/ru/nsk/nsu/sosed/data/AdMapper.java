@@ -14,6 +14,7 @@ public class AdMapper  extends FirebaseMapper<AdEntity, Ad> {
         ad.setImageUrl(adEntity.getImageUrl());
         ad.setTitle(adEntity.getTitle());
         ad.setText(adEntity.getText());
+        ad.setTopic(adEntity.getTopic());
         return ad;
     }
 }
