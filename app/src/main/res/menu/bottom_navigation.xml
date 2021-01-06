@@ -14,4 +14,9 @@
         android:icon="@drawable/ic_baseline_message_24"
         android:title="@string/title_icon_message" />
 
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="@string/title_profile" />
+
 </menu>
