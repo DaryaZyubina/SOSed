@@ -12,4 +12,9 @@ public class AdRepository extends FirebaseDatabaseRepository<Ad> {
     protected String getRootNode() {
         return "ads";
     }
+
+    @Override
+    public void addChild(Ad ad) {
+        databaseReference.push().setValue(new AdMapper().map(ad));
+    }
 }
