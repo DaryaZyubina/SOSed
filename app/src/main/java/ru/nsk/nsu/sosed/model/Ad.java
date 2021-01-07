@@ -20,14 +20,15 @@ public class Ad implements Parcelable {
     }
 
     protected Ad(Parcel in) {
-        final String[] data = new String[5];
+        final String[] data = new String[6];
         in.readStringArray(data);
         title = data[0];
         text = data[1];
         imageUrl = data[2];
         authorName = data[3];
+        authorId = data[4];
         try {
-            createdDate = SimpleDateFormat.getInstance().parse(data[4]);
+            createdDate = SimpleDateFormat.getInstance().parse(data[5]);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -45,11 +46,12 @@ public class Ad implements Parcelable {
         }
     };
 
-    public Ad(String title, String text, String imageUrl, String authorName, int topic, Date createdDate) {
+    public Ad(String title, String text, String imageUrl, String authorName, String authorId, int topic, Date createdDate) {
         this.title = title;
         this.text = text;
         this.imageUrl = imageUrl;
         this.authorName = authorName;
+        this.authorId = authorId;
         this.topic = topic;
         this.createdDate = createdDate;
     }
@@ -102,6 +104,14 @@ public class Ad implements Parcelable {
         this.createdDate = createdDate;
     }
 
+    public String getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -114,15 +124,10 @@ public class Ad implements Parcelable {
                 text,
                 imageUrl,
                 authorName,
+                authorId,
                 SimpleDateFormat.getInstance().format(createdDate)
         });
     }
 
-    public String getAuthorId() {
-        return authorId;
-    }
 
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
-    }
 }

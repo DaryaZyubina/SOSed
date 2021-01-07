@@ -5,7 +5,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class ProfileEntity {
-    @Exclude
+
     private String uid;
     private String name;
     private String email;
@@ -17,6 +17,7 @@ public class ProfileEntity {
 
     public ProfileEntity() {
     }
+    @Exclude
     public String getUid() {
         return uid;
     }

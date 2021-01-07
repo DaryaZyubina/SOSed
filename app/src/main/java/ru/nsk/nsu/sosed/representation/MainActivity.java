@@ -45,8 +45,11 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         //I added this if statement to keep the selected fragment when rotating the device
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new StartAdFragment()).commit();
+            Bundle bundle = new Bundle();
+            bundle.putInt("ad", -1);
+            AdFragment fragment = new AdFragment();
+            fragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
         }
     }
 
@@ -56,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
             // User is signed in
             FirebaseUserMetadata metadata = user.getMetadata();
             if (metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
-                CompleteAuthFragment fragment = new CompleteAuthFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                //CompleteAuthFragment fragment = new CompleteAuthFragment();
+                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CompleteAuthFragment()).commit();
                 Log.i("MainActivity", "new user's name: "+user.getDisplayName());
             }
 

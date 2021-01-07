@@ -3,6 +3,7 @@ package ru.nsk.nsu.sosed.representation.Ad;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -32,6 +33,7 @@ public class AdDetailsActivity extends AppCompatActivity {
     StorageReference storageReference;
 
     private static final String AD = "ad";
+    private Ad ad;
 
     public static Intent getIntent(final Context context, final Ad ad) {
         return new Intent(context, AdDetailsActivity.class).putExtra(AD, ad);
@@ -50,26 +52,25 @@ public class AdDetailsActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
 
         if (getIntent().hasExtra(AD)) {
-            final Ad ad = getIntent().getParcelableExtra(AD);
+            ad = getIntent().getParcelableExtra(AD);
             if (null != ad) {
                 setTitle(ad.getTitle());
                 text.setText(ad.getText());
                 createdDate.setText(SimpleDateFormat.getInstance().format(ad.getCreatedDate()));
                 author.setText(ad.getAuthorName());
                 String imageUrl = ad.getImageUrl();
+                Log.d("ad details on create", "author uid & name" + ad.getAuthorId() + ad.getAuthorName());
                 if (imageUrl!=null) download_image(imageUrl);
             }
         }
 
-        messageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AdDetailsActivity.this, MessageActivity.class);
-                intent.putExtra("useruid", author.get)
-                //крч надо передать уид кому пишем
-                intent.putExtra("username", author.getText());
-                startActivity(intent);
-            }
+        messageButton.setOnClickListener(view -> {
+            Intent intent = new Intent(AdDetailsActivity.this, MessageActivity.class);
+            Log.d("ad details on click", "author uid & name" + ad.getAuthorId() + ad.getAuthorName());
+            intent.putExtra("useruid", ad.getAuthorId());
+            //крч надо передать уид кому пишем
+            intent.putExtra("username", author.getText());
+            startActivity(intent);
         });
     }
 

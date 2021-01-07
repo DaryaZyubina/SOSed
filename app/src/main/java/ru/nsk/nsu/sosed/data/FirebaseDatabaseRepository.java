@@ -15,6 +15,7 @@ public abstract class FirebaseDatabaseRepository<Model> {
     private FirebaseMapper mapper;
 
     public FirebaseDatabaseRepository() {
+        databaseReference = FirebaseDatabase.getInstance().getReference(getRootNode());
     }
 
     protected abstract String getRootNode();

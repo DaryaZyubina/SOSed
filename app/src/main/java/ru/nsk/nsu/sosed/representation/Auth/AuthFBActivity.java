@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import ru.nsk.nsu.sosed.data.profile.ProfileEntity;
 import ru.nsk.nsu.sosed.representation.Ad.AdFragment;
 import ru.nsk.nsu.sosed.representation.Ad.AdViewModel;
 import ru.nsk.nsu.sosed.representation.MainActivity;
@@ -33,7 +34,7 @@ public class AuthFBActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         createSignInIntent();
     }
 
@@ -60,6 +61,16 @@ public class AuthFBActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
 
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                FirebaseUserMetadata metadata = user.getMetadata();
+                if (metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
+                    ProfileEntity profile = new ProfileEntity();
+                    profile.setUid(user.getUid());
+                    profile.setName(user.getDisplayName());
+                    profile.setEmail(user.getEmail());
+                    profile.setMessagingEnabled(false);
+                    viewModel.saveProfile(profile);
+                }
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             } else {

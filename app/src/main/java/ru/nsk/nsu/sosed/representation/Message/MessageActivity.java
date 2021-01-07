@@ -3,6 +3,7 @@ package ru.nsk.nsu.sosed.representation.Message;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -27,14 +28,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import ru.nsk.nsu.sosed.data.message.MessageAdapter;
 import ru.nsk.nsu.sosed.data.profile.ProfileEntity;
 import ru.nsk.nsu.sosed.model.Chat;
 
@@ -91,8 +90,9 @@ public class MessageActivity extends AppCompatActivity {
         intent = getIntent();
         username.setText(intent.getStringExtra("username"));
         userUid = intent.getStringExtra("useruid"); //кому пишем
+        Log.d("message", "author uid" + userUid);
 
-        fUser = FirebaseAuth.getInstance().getCurrentUser(); //ты
+        fUser = FirebaseAuth.getInstance().getCurrentUser(); //ты        --
         reference = FirebaseDatabase.getInstance().getReference("users").child(userUid);
 
         btn_send.setOnClickListener(new View.OnClickListener() {
@@ -114,10 +114,11 @@ public class MessageActivity extends AppCompatActivity {
                 user = snapshot.getValue(ProfileEntity.class);
                 //username.setText(user.getName());  -- если будем передавать только уид
 
-                if (user.getImageUrl().equals("default")) {       //ну или не дефолт
+                if (user.getImageUrl() == null) {       //ну или не дефолт -- null покатит
                     profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
                 }else{
-                    download_image();
+                    profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
+                    //download_image();
                     //Glide.with(getApplicationContext()).load(user.getImageUrl()).into(profile_image);
                 }
 
@@ -132,13 +133,8 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void download_image(){
-        StorageReference profileRef  = storageReference.child("images/profiles/" + user.getImageUrl());
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(getApplicationContext()).load(uri).into(profile_image);
-            }
-        });
+            StorageReference profileRef = storageReference.child("images/profiles/" + user.getImageUrl());
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Glide.with(getApplicationContext()).load(uri).into(profile_image));
     }
 
     private void seenMessage(String userid){
