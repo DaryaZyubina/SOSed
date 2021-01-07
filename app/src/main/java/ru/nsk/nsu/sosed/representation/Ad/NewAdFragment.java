@@ -68,7 +68,7 @@ public class NewAdFragment extends Fragment {
         AdViewModel viewModel = new ViewModelProvider(this).get(AdViewModel.class);
 
         newAd = new Ad();
-        newAd.setAuthor(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        newAd.setAuthorName(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         newAd.setCreatedDate(new Date(System.currentTimeMillis()));
         newAd.setTopic(category+1);
 

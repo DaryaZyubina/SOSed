@@ -10,7 +10,8 @@ public class AdMapper  extends FirebaseMapper<AdEntity, Ad> {
     @Override
     public Ad map(AdEntity adEntity) {
         Ad ad = new Ad();
-        ad.setAuthor(adEntity.getAuthorName());
+        ad.setAuthorName(adEntity.getAuthorName());
+        ad.setAuthorId(adEntity.getAuthorId());
         ad.setCreatedDate(new Date(adEntity.getCreatedDate()*1000));
         ad.setImageUrl(adEntity.getImageUrl());
         ad.setTitle(adEntity.getTitle());
@@ -20,7 +21,8 @@ public class AdMapper  extends FirebaseMapper<AdEntity, Ad> {
     }
     public AdEntity map(Ad ad){
         AdEntity adEntity = new AdEntity();
-        adEntity.setAuthorName(ad.getAuthor());
+        adEntity.setAuthorName(ad.getAuthorName());
+        adEntity.setAuthorId(ad.getAuthorId());
         adEntity.setCreatedDate(ad.getCreatedDate().getTime()/1000);
         adEntity.setImageUrl(ad.getImageUrl());
         adEntity.setTitle(ad.getTitle());
