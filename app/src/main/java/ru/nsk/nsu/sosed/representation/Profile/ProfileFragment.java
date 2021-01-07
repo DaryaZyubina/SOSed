@@ -72,6 +72,7 @@ public class ProfileFragment extends Fragment {
     @Nullable
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
+        getActivity().setTitle(getString(R.string.title_profile));
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
@@ -109,7 +110,7 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Что-то пошло не так:(", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Что-то пошло не так :(", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -123,13 +124,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 userProfile.setMessagingEnabled(checkBox.isChecked());
-                databaseReference.setValue(userProfile);
+                databaseReference.child(uid).setValue(userProfile);
             }
         });
     }
 
     private void download_image(){
-        StorageReference profileRef  = storageReference.child("images/" + uid);
+        StorageReference profileRef  = storageReference.child("images/profiles/" + userProfile.getImageUrl());
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -192,13 +193,13 @@ public class ProfileFragment extends Fragment {
         pd.show();
 
 
-        //final String randomKey = UUID.randomUUID().toString();
-        StorageReference riversRef = storageReference.child("images/" + uid);
+        final String randomKey = UUID.randomUUID().toString();
+        StorageReference profileImagesRef = storageReference.child("images/profiles/" + randomKey);
 
-        userProfile.setImageUrl(uid);
-        databaseReference.setValue(userProfile);
+        userProfile.setImageUrl(randomKey);
+        databaseReference.child(uid).setValue(userProfile);
 
-        riversRef.putFile(imageUri)
+        profileImagesRef.putFile(imageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

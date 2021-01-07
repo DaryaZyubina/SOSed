@@ -7,7 +7,7 @@ public class AdEntity {
     private String title;
     private String text;
     private String imageUrl;
-    private String authorId;
+    private String authorName;
     private int topic;
     private long createdDate;
 
@@ -38,12 +38,12 @@ public class AdEntity {
         this.imageUrl = imageUrl;
     }
 
-    public String getAuthorId() {
-        return authorId;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public int getTopic() {

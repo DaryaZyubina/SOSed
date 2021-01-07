@@ -3,17 +3,19 @@ package ru.nsk.nsu.sosed.representation.Ad;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sosed.R;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 
-import ru.nsk.nsu.sosed.domain.Ad;
+import ru.nsk.nsu.sosed.model.Ad;
 
 public class AdDetailsActivity extends AppCompatActivity {
 
@@ -22,6 +24,8 @@ public class AdDetailsActivity extends AppCompatActivity {
     ImageView photoAttached;
     TextView createdDate;
     TextView author;
+
+    StorageReference storageReference;
 
     private static final String AD = "ad";
 
@@ -38,6 +42,8 @@ public class AdDetailsActivity extends AppCompatActivity {
         createdDate = findViewById(R.id.detail_created_date_text_view);
         author = findViewById(R.id.detail_author_text_view);
 
+        storageReference = FirebaseStorage.getInstance().getReference();
+
         if (getIntent().hasExtra(AD)) {
             final Ad ad = getIntent().getParcelableExtra(AD);
             if (null != ad) {
@@ -45,8 +51,14 @@ public class AdDetailsActivity extends AppCompatActivity {
                 text.setText(ad.getText());
                 createdDate.setText(SimpleDateFormat.getInstance().format(ad.getCreatedDate()));
                 author.setText(ad.getAuthor());
+                download_image(ad.getImageUrl());
             }
         }
+    }
+
+    private void download_image(String url){
+        StorageReference profileRef  = storageReference.child("images/ads/" + url);
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.with(AdDetailsActivity.this).load(uri).into(photoAttached));
     }
 
 }

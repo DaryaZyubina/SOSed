@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.domain;
+package ru.nsk.nsu.sosed.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

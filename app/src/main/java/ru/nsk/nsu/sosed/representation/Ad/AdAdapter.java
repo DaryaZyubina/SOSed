@@ -7,9 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sosed.R;
@@ -18,9 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import ru.nsk.nsu.sosed.domain.Ad;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+import ru.nsk.nsu.sosed.model.Ad;
 
 public class AdAdapter extends RecyclerView.Adapter<AdAdapter.AdViewHolder> {
 
