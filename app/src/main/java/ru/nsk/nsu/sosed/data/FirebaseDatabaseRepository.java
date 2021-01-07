@@ -1,5 +1,7 @@
 package ru.nsk.nsu.sosed.data;
 
+import androidx.annotation.Nullable;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -11,6 +13,9 @@ public abstract class FirebaseDatabaseRepository<Model> {
     protected FirebaseDatabaseRepositoryCallback<Model> firebaseCallback;
     private BaseValueEventListener listener;
     private FirebaseMapper mapper;
+
+    public FirebaseDatabaseRepository() {
+    }
 
     protected abstract String getRootNode();
 
