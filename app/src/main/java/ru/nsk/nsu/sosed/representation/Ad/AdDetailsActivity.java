@@ -65,7 +65,7 @@ public class AdDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdDetailsActivity.this, MessageActivity.class);
-                //intent.putExtra("userid", author.get)
+                intent.putExtra("useruid", author.get)
                 //крч надо передать уид кому пишем
                 intent.putExtra("username", author.getText());
                 startActivity(intent);

@@ -97,10 +97,10 @@ public class MessageFragment extends Fragment {
 
                     //display 1 user from chats
                     for (String id : usersList){
-                        if (user.getId().equals(id)){
+                        if (user.getUid().equals(id)){
                             if (mUsers.size() != 0){
                                 for (ProfileEntity user1 : mUsers){
-                                    if (!user.getId().equals(user1.getId())){
+                                    if (!user.getUid().equals(user1.getUid())){
                                         mUsers.add(user);
                                     }
                                 }
@@ -119,7 +119,7 @@ public class MessageFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        })
+        });
     }
 
 }
