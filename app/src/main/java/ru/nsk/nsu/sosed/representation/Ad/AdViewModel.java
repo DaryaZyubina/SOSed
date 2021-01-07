@@ -40,4 +40,8 @@ public class AdViewModel extends ViewModel {
             }
         });
     }
+
+    public void saveAd(Ad ad){
+        repository.addChild(ad);
+    }
 }

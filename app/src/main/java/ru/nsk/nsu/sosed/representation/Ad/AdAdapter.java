@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sosed.R;
@@ -59,6 +61,7 @@ public static class AdViewHolder extends RecyclerView.ViewHolder {
         text = itemView.findViewById(R.id.text_text_view);
         photoAttached = itemView.findViewById(R.id.photo_attached_text_view);
         createdDate = itemView.findViewById(R.id.created_date_text_view);
+        itemView.setOnClickListener(onItemClickListener());
     }
 
     void onBind(final Ad item) {
@@ -83,14 +86,12 @@ public static class AdViewHolder extends RecyclerView.ViewHolder {
                 Log.e("ad adapter:view holder", "Ad item is null in ViewHolder.");
                 return;
             }
-            //goToTheDetailsScreen(item); // этот метод у активити мб??
+            final Intent intent = AdDetailsActivity.getIntent(view.getContext(), item);
+            view.getContext().startActivity(intent);
+
         };
     }
 
-    private void goToTheDetailsScreen(Ad item) {
-        //final Intent intent = AdDetailsfragment.getIntent(this, item);
-        //activity.startActivity(intent);
-    }
 
     private String getDateString(final Date date) {
         return SimpleDateFormat.getInstance().format(date);

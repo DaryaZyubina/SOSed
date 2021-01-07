@@ -14,6 +14,17 @@ public class AdMapper  extends FirebaseMapper<AdEntity, Ad> {
         ad.setImageUrl(adEntity.getImageUrl());
         ad.setTitle(adEntity.getTitle());
         ad.setText(adEntity.getText());
+        ad.setTopic(adEntity.getTopic());
         return ad;
+    }
+    public AdEntity map(Ad ad){
+        AdEntity adEntity = new AdEntity();
+        adEntity.setAuthorId(ad.getAuthor());
+        adEntity.setCreatedDate(ad.getCreatedDate().getTime()/1000);
+        adEntity.setImageUrl(ad.getImageUrl());
+        adEntity.setTitle(ad.getTitle());
+        adEntity.setText(ad.getText());
+        adEntity.setTopic(ad.getTopic());
+        return adEntity;
     }
 }

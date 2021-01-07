@@ -14,6 +14,8 @@ public abstract class FirebaseDatabaseRepository<Model> {
 
     protected abstract String getRootNode();
 
+    protected abstract void addChild(Model model);
+
     public FirebaseDatabaseRepository(FirebaseMapper mapper) {
         databaseReference = FirebaseDatabase.getInstance().getReference(getRootNode());
         this.mapper = mapper;
@@ -26,7 +28,7 @@ public abstract class FirebaseDatabaseRepository<Model> {
     }
 
     public void removeListener() {
-        databaseReference.removeEventListener(listener);
+        if(listener!=null) databaseReference.removeEventListener(listener);
     }
 
     public interface FirebaseDatabaseRepositoryCallback<T> {

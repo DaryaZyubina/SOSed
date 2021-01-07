@@ -41,7 +41,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="64dp"
         android:text="@string/title_email"
-        android:textSize="22sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userView"
         tools:ignore="MissingConstraints"
@@ -51,13 +51,12 @@
         android:id="@+id/email_userView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:text="TextView"
-        android:textSize="22sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userView"
+        app:layout_constraintTop_toTopOf="@+id/emailView"
         tools:ignore="MissingConstraints" />
 
     <CheckBox
@@ -66,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="@string/title_check"
-        android:textSize="22sp"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/emailView"
         tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,11 @@
     <string name="title_ad">Объявления жильцов</string>
     <string name="title_home">Главная</string>
     <string name="title_profile">Профиль</string>
+    <string-array name="ad_categories">
+        <item>Найденные вещи</item>
+        <item>Потерянные вещи</item>
+        <item>Другие объявления</item>
+    </string-array>
     <string name="title_email">Электронная почта</string>
     <string name="title_check">Разрешить присылать мне сообщения по номеру квартиры</string>
 
