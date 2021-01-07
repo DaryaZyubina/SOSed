@@ -1,12 +1,15 @@
 package ru.nsk.nsu.sosed.data.profile;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class ProfileEntity {
+    @Exclude
+    private String uid;
     private String name;
     private String email;
-    private String apartment_num;
+    private String apartmentNum;
     private String house;
     private Boolean messagingEnabled;
     private String imageUrl;
@@ -14,7 +17,13 @@ public class ProfileEntity {
 
     public ProfileEntity() {
     }
+    public String getUid() {
+        return uid;
+    }
 
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
     public String getName() {
         return name;
     }
@@ -31,12 +40,12 @@ public class ProfileEntity {
         this.email = email;
     }
 
-    public String getApartment_num() {
-        return apartment_num;
+    public String getApartmentNum() {
+        return apartmentNum;
     }
 
-    public void setApartment_num(String apartment_num) {
-        this.apartment_num = apartment_num;
+    public void setApartmentNum(String apartmentNum) {
+        this.apartmentNum = apartmentNum;
     }
 
     public String getHouse() {

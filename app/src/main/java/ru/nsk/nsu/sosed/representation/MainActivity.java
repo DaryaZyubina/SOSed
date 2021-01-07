@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -15,7 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import ru.nsk.nsu.sosed.representation.Ad.AdFragment;
 import ru.nsk.nsu.sosed.representation.Ad.StartAdFragment;
-import ru.nsk.nsu.sosed.representation.HCS.HCSFragment;
+import ru.nsk.nsu.sosed.representation.Auth.CompleteAuthFragment;
 import ru.nsk.nsu.sosed.representation.Message.MessageFragment;
 
 import com.example.sosed.R;
@@ -26,6 +27,8 @@ import ru.nsk.nsu.sosed.representation.Auth.AuthFBActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseUserMetadata;
+import com.google.firebase.auth.UserInfo;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //drawerLayout = findViewById(R.id.drawer_layout);
-
 
         checkCurrentUser();
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -54,30 +54,18 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // User is signed in
+            FirebaseUserMetadata metadata = user.getMetadata();
+            if (metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
+                CompleteAuthFragment fragment = new CompleteAuthFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                Log.i("MainActivity", "new user's name: "+user.getDisplayName());
+            }
+
         } else {
             redirectActivity(this, AuthFBActivity.class);
         }
 
         // [END check_current_user]
-    }
-
-
-    public void ClickMenu(){
-        openDrawer(drawerLayout);
-    }
-
-    private static void openDrawer(DrawerLayout drawerLayout){
-        drawerLayout.openDrawer(GravityCompat.START);
-    }
-
-    public void ClickLogo(){
-        closeDrawer(drawerLayout);
-    }
-
-    private static void closeDrawer(DrawerLayout drawerLayout){
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
     }
 
     public void ClickHome(View view){

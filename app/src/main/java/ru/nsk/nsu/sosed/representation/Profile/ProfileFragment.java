@@ -23,8 +23,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sosed.R;
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,6 +46,7 @@ import java.io.File;
 import java.util.UUID;
 
 import ru.nsk.nsu.sosed.data.profile.ProfileEntity;
+import ru.nsk.nsu.sosed.representation.MainActivity;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -55,6 +59,8 @@ public class ProfileFragment extends Fragment {
     Bitmap bitmap;
     ImageView image_user;
     CheckBox checkBox;
+    TextView name_view, email_view;
+    Button logout_button;
 
     DatabaseReference databaseReference;
     FirebaseUser user;
@@ -65,7 +71,6 @@ public class ProfileFragment extends Fragment {
     String uid;
     Uri imageUri;
 
-    TextView name_view, email_view;
 
     ProfileEntity userProfile;
 
@@ -84,10 +89,12 @@ public class ProfileFragment extends Fragment {
         email_view = v.findViewById(R.id.email_userView);
         image_user = v.findViewById(R.id.avatarView);
         checkBox = v.findViewById(R.id.checkBox);
+        logout_button = v.findViewById(R.id.logout_button);
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
+        logout_button.setOnClickListener(v1 -> logout());
 
         databaseReference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -115,6 +122,15 @@ public class ProfileFragment extends Fragment {
         });
 
         return v;
+    }
+
+    private void logout() {
+        AuthUI.getInstance()
+                .signOut(getContext())
+                .addOnCompleteListener(task -> {
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    startActivity(intent);
+                });
     }
 
     private void addCheckBoxListener(CheckBox checkBox, ProfileEntity userProfile){

@@ -51,7 +51,8 @@ public class AdDetailsActivity extends AppCompatActivity {
                 text.setText(ad.getText());
                 createdDate.setText(SimpleDateFormat.getInstance().format(ad.getCreatedDate()));
                 author.setText(ad.getAuthor());
-                download_image(ad.getImageUrl());
+                String imageUrl = ad.getImageUrl();
+                if (imageUrl!=null) download_image(imageUrl);
             }
         }
     }

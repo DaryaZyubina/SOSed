@@ -6,7 +6,10 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
+import ru.nsk.nsu.sosed.representation.Ad.AdFragment;
+import ru.nsk.nsu.sosed.representation.Ad.AdViewModel;
 import ru.nsk.nsu.sosed.representation.MainActivity;
 import com.example.sosed.R;
 import com.firebase.ui.auth.AuthUI;
@@ -25,10 +28,12 @@ public class AuthFBActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 1231;
     private static final String tag = "FirebaseUIActivity";
+    AuthViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         createSignInIntent();
     }
 
@@ -54,15 +59,8 @@ public class AuthFBActivity extends AppCompatActivity {
             IdpResponse response = IdpResponse.fromResultIntent(data);
 
             if (resultCode == RESULT_OK) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                FirebaseUserMetadata metadata = user.getMetadata();
-                if (metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
-                    // The user is new, todo: screen to choose house
-                } else {
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-                }
-                Intent intent = new Intent(this, MainActivity.class);          //убрать потом
+
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             } else {
                 if (response != null){
@@ -70,18 +68,6 @@ public class AuthFBActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    public void signOut() {
-        // [START auth_fui_signout]
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // ...
-                    }
-                });
-        // [END auth_fui_signout]
     }
 
     public void delete() {
