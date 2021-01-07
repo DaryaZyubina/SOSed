@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -14,6 +13,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import ru.nsk.nsu.sosed.representation.Ad.AdFragment;
 import ru.nsk.nsu.sosed.representation.Ad.StartAdFragment;
 import ru.nsk.nsu.sosed.representation.HCS.HCSFragment;
 import ru.nsk.nsu.sosed.representation.Message.MessageFragment;
@@ -21,7 +21,7 @@ import ru.nsk.nsu.sosed.representation.Message.MessageFragment;
 import com.example.sosed.R;
 
 import ru.nsk.nsu.sosed.representation.Profile.ProfileFragment;
-import ru.nsk.nsu.sosed.representation.auth.AuthFBActivity;
+import ru.nsk.nsu.sosed.representation.Auth.AuthFBActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -97,7 +97,10 @@ public class MainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
                     switch (item.getItemId()) {
                         case R.id.nav_home:
-                            selectedFragment = new HCSFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("ad", -1);
+                            selectedFragment = new AdFragment();
+                            selectedFragment.setArguments(bundle);
                             break;
                         case R.id.nav_ads:
                             selectedFragment = new StartAdFragment();

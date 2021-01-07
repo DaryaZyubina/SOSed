@@ -31,10 +31,10 @@ public class StartAdFragment  extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Bundle bundle = new Bundle();
-                bundle.putString("ad", values[i]);
+                bundle.putInt("ad", i);
                 AdFragment fragment = new AdFragment();
                 fragment.setArguments(bundle);
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
             }
         });
 

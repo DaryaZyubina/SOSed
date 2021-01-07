@@ -1,7 +1,8 @@
-package ru.nsk.nsu.sosed.data;
+package ru.nsk.nsu.sosed.data.ad;
 
 import java.util.Date;
 
+import ru.nsk.nsu.sosed.data.FirebaseMapper;
 import ru.nsk.nsu.sosed.domain.Ad;
 
 public class AdMapper  extends FirebaseMapper<AdEntity, Ad> {

@@ -18,13 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ru.nsk.nsu.sosed.representation.auth.AuthFBActivity"
+        <activity android:name="ru.nsk.nsu.sosed.representation.Auth.AuthFBActivity"
             android:parentActivityName="ru.nsk.nsu.sosed.representation.MainActivity">
         </activity>
         <activity android:name="ru.nsk.nsu.sosed.representation.Ad.AdDetailsActivity"
             android:parentActivityName="ru.nsk.nsu.sosed.representation.MainActivity">
-        </activity>
-        <activity android:name="ru.nsk.nsu.sosed.representation.Ad.NewAdActivity">
         </activity>
 
     </application>

@@ -1,5 +1,6 @@
-package ru.nsk.nsu.sosed.data;
+package ru.nsk.nsu.sosed.data.ad;
 
+import ru.nsk.nsu.sosed.data.FirebaseDatabaseRepository;
 import ru.nsk.nsu.sosed.domain.Ad;
 
 public class AdRepository extends FirebaseDatabaseRepository<Ad> {

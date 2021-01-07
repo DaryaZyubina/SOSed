@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.representation.auth;
+package ru.nsk.nsu.sosed.representation.Auth;
 
 import android.content.Intent;
 import android.os.Bundle;

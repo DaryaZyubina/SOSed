@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
-import ru.nsk.nsu.sosed.data.AdRepository;
+import ru.nsk.nsu.sosed.data.ad.AdRepository;
 import ru.nsk.nsu.sosed.data.FirebaseDatabaseRepository;
 import ru.nsk.nsu.sosed.domain.Ad;
 

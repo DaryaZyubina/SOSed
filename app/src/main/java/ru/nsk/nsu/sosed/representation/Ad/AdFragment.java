@@ -6,10 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +26,7 @@ import ru.nsk.nsu.sosed.domain.Ad;
 public class AdFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private String category;
+    private int category;
 
     private FloatingActionButton addAd;
 
@@ -35,21 +36,29 @@ public class AdFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_ads, container, false);
 
+        Bundle bundle = this.getArguments();
+        assert bundle != null;
+        category = bundle.getInt("ad");
+        Log.i("ad fragment", "category: " + category);
+        String[] categories = getResources().getStringArray(R.array.ad_categories);
+        if (category==-1){
+            getActivity().setTitle(getString(R.string.title_hcs));
+        }
+        if (0 < category && category < categories.length) {
+            getActivity().setTitle(categories[category]);
+        }
         recyclerView = v.findViewById(R.id.recycler_view_ads);
         addAd = v.findViewById(R.id.add_ad_fab);
         addAd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), NewAdActivity.class);
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putInt("ad", category);
+                Fragment fragment = new NewAdFragment();
+                fragment.setArguments(bundle);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
             }
         });
 
-        Bundle bundle = this.getArguments();
-        assert bundle != null;
-        category = bundle.getString("ad");
-        Log.i("ad fragment", "category: " + category);
-
-        getActivity().setTitle(category);
         return v;
     }
 
@@ -68,7 +77,8 @@ public class AdFragment extends Fragment {
     }
 
     private List<Ad> getAdsFiltered(List<Ad> ads){ //todo: перенести во viewModel?
-        String[] categories = getResources().getStringArray(R.array.ad_categories);
+        int topic = category+1;
+        /*String[] categories = getResources().getStringArray(R.array.ad_categories);
         int topic=-1;
         if(category.equals("ЖКХ")){
             topic = 0;
@@ -77,7 +87,7 @@ public class AdFragment extends Fragment {
             if (categories[i].equals(category)){
                 topic = i+1;
             }
-        }
+        }*/
         List<Ad> adsFiltered = new ArrayList<Ad>();
         for(Ad a:ads){
             if(a.getTopic()==topic){

@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.data;
+package ru.nsk.nsu.sosed.data.ad;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
