@@ -69,12 +69,7 @@ public class MessageActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
 
         recyclerView = findViewById(R.id.recycler_view_message);
         recyclerView.setHasFixedSize(true);
@@ -92,20 +87,17 @@ public class MessageActivity extends AppCompatActivity {
         userUid = intent.getStringExtra("useruid"); //кому пишем
         Log.d("message", "author uid" + userUid);
 
-        fUser = FirebaseAuth.getInstance().getCurrentUser(); //ты        --
+        fUser = FirebaseAuth.getInstance().getCurrentUser(); //ты
         reference = FirebaseDatabase.getInstance().getReference("users").child(userUid);
 
-        btn_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String msg = text_send.getText().toString();
-                if (msg.equals("")){
-                    sendMessage(fUser.getUid(), userUid, msg);
-                }else{
-                    Toast.makeText(MessageActivity.this, "Вы не можете отправить пустое сообщение", Toast.LENGTH_SHORT).show();
-                }
-                text_send.setText("");
+        btn_send.setOnClickListener(view -> {
+            String msg = text_send.getText().toString();
+            if (msg.equals("")){
+                Toast.makeText(MessageActivity.this, "Вы не можете отправить пустое сообщение", Toast.LENGTH_SHORT).show();
+            }else{
+                sendMessage(fUser.getUid(), userUid, msg);
             }
+            text_send.setText("");
         });
 
         reference.addValueEventListener(new ValueEventListener() {
