@@ -84,10 +84,6 @@ public class MainActivity extends AppCompatActivity {
         recreate();
     }
 
-    public void ClickProfile(View view){
-        redirectActivity(this, ProfileActivity.class);
-    }
-
     private static void redirectActivity(Activity activity, Class cClass){
         Intent intent = new Intent(activity, cClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
