@@ -3,6 +3,8 @@ package ru.nsk.nsu.sosed.representation.Ad;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ import com.squareup.picasso.Picasso;
 import java.text.SimpleDateFormat;
 
 import ru.nsk.nsu.sosed.model.Ad;
+import ru.nsk.nsu.sosed.representation.Message.MessageActivity;
 
 public class AdDetailsActivity extends AppCompatActivity {
 
@@ -24,6 +27,7 @@ public class AdDetailsActivity extends AppCompatActivity {
     ImageView photoAttached;
     TextView createdDate;
     TextView author;
+    Button messageButton;
 
     StorageReference storageReference;
 
@@ -41,6 +45,7 @@ public class AdDetailsActivity extends AppCompatActivity {
         photoAttached = findViewById(R.id.photo_image_view);
         createdDate = findViewById(R.id.detail_created_date_text_view);
         author = findViewById(R.id.detail_author_text_view);
+        messageButton = findViewById(R.id.message_button);
 
         storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -55,6 +60,17 @@ public class AdDetailsActivity extends AppCompatActivity {
                 if (imageUrl!=null) download_image(imageUrl);
             }
         }
+
+        messageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdDetailsActivity.this, MessageActivity.class);
+                intent.putExtra("useruid", author.get)
+                //крч надо передать уид кому пишем
+                intent.putExtra("username", author.getText());
+                startActivity(intent);
+            }
+        });
     }
 
     private void download_image(String url){
