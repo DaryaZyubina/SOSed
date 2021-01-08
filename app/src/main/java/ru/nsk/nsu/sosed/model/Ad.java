@@ -20,15 +20,16 @@ public class Ad implements Parcelable {
     }
 
     protected Ad(Parcel in) {
-        final String[] data = new String[6];
+        final String[] data = new String[7];
         in.readStringArray(data);
         title = data[0];
         text = data[1];
         imageUrl = data[2];
         authorName = data[3];
         authorId = data[4];
+        topic = Integer.parseInt(data[5]);
         try {
-            createdDate = SimpleDateFormat.getInstance().parse(data[5]);
+            createdDate = SimpleDateFormat.getInstance().parse(data[6]);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -125,6 +126,7 @@ public class Ad implements Parcelable {
                 imageUrl,
                 authorName,
                 authorId,
+                Integer.toString(topic),
                 SimpleDateFormat.getInstance().format(createdDate)
         });
     }

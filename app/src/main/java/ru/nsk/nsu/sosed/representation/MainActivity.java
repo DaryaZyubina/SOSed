@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import ru.nsk.nsu.sosed.representation.view.ad.AdFragment;
 import ru.nsk.nsu.sosed.representation.view.ad.StartAdFragment;
-import ru.nsk.nsu.sosed.representation.Message.MessageFragment;
+import ru.nsk.nsu.sosed.representation.view.message.MessageFragment;
 
 import com.example.sosed.R;
 

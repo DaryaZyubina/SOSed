@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.text.SimpleDateFormat;
 
 import ru.nsk.nsu.sosed.model.Ad;
-import ru.nsk.nsu.sosed.representation.Message.MessageActivity;
+import ru.nsk.nsu.sosed.representation.view.message.MessageActivity;
 
 public class AdDetailsActivity extends AppCompatActivity {
 
@@ -64,7 +64,7 @@ public class AdDetailsActivity extends AppCompatActivity {
             }
         }
 
-        if(FirebaseAuth.getInstance().getCurrentUser().getUid().equals(ad.getAuthorId())){
+        if(FirebaseAuth.getInstance().getCurrentUser().getUid().equals(ad.getAuthorId()) || ad.getTopic()==0){
             messageButton.setVisibility(View.GONE);
         }
 

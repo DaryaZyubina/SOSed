@@ -111,7 +111,7 @@ public class ProfileFragment extends Fragment {
 
                     addCheckBoxListener(checkBox, userProfile);
                     addImageViewListener(image_user);
-                    download_image();
+                    if (userProfile.getImageUrl()!=null) download_image();
                 }
             }
 

@@ -1,7 +1,7 @@
-package ru.nsk.nsu.sosed.representation.Message;
+package ru.nsk.nsu.sosed.representation.adapter;
 
 import android.content.Context;
-import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.sosed.R;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
@@ -60,10 +59,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         Chat chat = mChat.get(position);
 
         image_Reference = FirebaseStorage.getInstance().getReference();
-
+        Log.i("mes adapt", "chat.getMessage()" + chat.getMessage());
         holder.show_message.setText(chat.getMessage());
 
-        if (imageUrl == null) {       //ну или не дефолт -- null покатит
+        if (imageUrl == null) {
             holder.profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
         }else{
             image_Reference = FirebaseStorage.getInstance().getReference();

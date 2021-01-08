@@ -20,7 +20,7 @@
         </activity>
 
         <activity
-            android:name="ru.nsk.nsu.sosed.representation.Message.MessageActivity"
+            android:name="ru.nsk.nsu.sosed.representation.view.message.MessageActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

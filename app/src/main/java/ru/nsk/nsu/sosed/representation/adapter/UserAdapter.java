@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.representation.Message;
+package ru.nsk.nsu.sosed.representation.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +27,7 @@ import java.util.List;
 
 import ru.nsk.nsu.sosed.data.profile.ProfileEntity;
 import ru.nsk.nsu.sosed.model.Chat;
+import ru.nsk.nsu.sosed.representation.view.message.MessageActivity;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 

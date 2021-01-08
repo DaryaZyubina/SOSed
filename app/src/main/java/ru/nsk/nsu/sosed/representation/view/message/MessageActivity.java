@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.representation.Message;
+package ru.nsk.nsu.sosed.representation.view.message;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +34,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import ru.nsk.nsu.sosed.data.profile.ProfileEntity;
 import ru.nsk.nsu.sosed.model.Chat;
+import ru.nsk.nsu.sosed.representation.adapter.MessageAdapter;
 
 public class MessageActivity extends AppCompatActivity {
 
@@ -62,6 +63,7 @@ public class MessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -83,7 +85,6 @@ public class MessageActivity extends AppCompatActivity {
         intent = getIntent();
         username.setText(intent.getStringExtra("username"));
         userUid = intent.getStringExtra("useruid"); //кому пишем
-        Log.d("message", "author uid" + userUid);
 
         fUser = FirebaseAuth.getInstance().getCurrentUser(); //ты
         reference = FirebaseDatabase.getInstance().getReference("users").child(userUid);
@@ -103,7 +104,11 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 user = snapshot.getValue(ProfileEntity.class);
 
-                if (user.getImageUrl() == null) {       //ну или не дефолт -- null покатит
+                if (!user.getMessagingEnabled()){
+                    Toast.makeText(MessageActivity.this, "Автор этого объявления не разрешил обмен сообщениями в приложении", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                if (user.getImageUrl() == null) {
                     profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
 
                 }else{

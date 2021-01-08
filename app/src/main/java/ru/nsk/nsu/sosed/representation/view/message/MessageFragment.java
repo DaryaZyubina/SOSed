@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.representation.Message;
+package ru.nsk.nsu.sosed.representation.view.message;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,6 +25,7 @@ import java.util.List;
 
 import ru.nsk.nsu.sosed.data.profile.ProfileEntity;
 import ru.nsk.nsu.sosed.model.Chatlist;
+import ru.nsk.nsu.sosed.representation.adapter.UserAdapter;
 
 public class MessageFragment extends Fragment {
 
