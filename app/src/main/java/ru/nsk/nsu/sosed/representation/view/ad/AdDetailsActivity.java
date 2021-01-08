@@ -67,7 +67,7 @@ public class AdDetailsActivity extends AppCompatActivity {
             Intent intent = new Intent(AdDetailsActivity.this, MessageActivity.class);
             Log.d("ad details on click", "author uid & name" + ad.getAuthorId() + ad.getAuthorName());
             intent.putExtra("useruid", ad.getAuthorId());
-            intent.putExtra("username", author.getText());
+            intent.putExtra("username", ad.getAuthorName());
             startActivity(intent);
         });
     }

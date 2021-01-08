@@ -25,6 +25,7 @@ import java.util.List;
 
 import ru.nsk.nsu.sosed.data.profile.ProfileEntity;
 import ru.nsk.nsu.sosed.model.Chat;
+import ru.nsk.nsu.sosed.model.Chatlist;
 
 public class MessageFragment extends Fragment {
 
@@ -32,13 +33,14 @@ public class MessageFragment extends Fragment {
 
     private UserAdapter userAdapter;
     private List<ProfileEntity> mUsers;
+    private List<ProfileEntity> mUsers_new;
 
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
 
     ProfileEntity user;
 
-    private List<String> usersList;
+    private List<Chatlist> usersList;
 
     @Nullable
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,25 +55,17 @@ public class MessageFragment extends Fragment {
 
         usersList = new ArrayList<>();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("chats");
+        databaseReference = FirebaseDatabase.getInstance().getReference("chatlist").child(firebaseUser.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 usersList.clear();
-
                 for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    Chat chat = snapshot1.getValue(Chat.class);
-
-                    if (chat.getSender().equals(firebaseUser.getUid())){
-                        usersList.add(chat.getReciever());
-                    }
-
-                    if (chat.getReciever().equals(firebaseUser.getUid())){
-                        usersList.add(chat.getSender());
-                    }
+                    Chatlist chatlist = snapshot1.getValue(Chatlist.class);
+                    usersList.add(chatlist);
                 }
 
-                readChats();
+                chatList();
             }
 
             @Override
@@ -83,31 +77,20 @@ public class MessageFragment extends Fragment {
         return v;
     }
 
-    private void readChats(){
+    private void chatList(){
         mUsers = new ArrayList<>();
-
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 mUsers.clear();
-
                 for (DataSnapshot userSnapshot : snapshot.getChildren()){
                     user = userSnapshot.getValue(ProfileEntity.class);
                     user.setUid(userSnapshot.getKey());
-                    //display 1 user from chats
-                    for (String uid : usersList){
-                        if (user.getUid().equals(uid)){
-                            if (mUsers.size() != 0){
-                                for (ProfileEntity user1 : mUsers){
-                                    if (!user.getUid().equals(user1.getUid())){
-                                        mUsers.add(user);
-                                    }
-                                }
-                            } else {
-                                mUsers.add(user);
-                            }
+
+                    for (Chatlist chatlist : usersList){
+                        if (user.getUid().equals(chatlist.getId())){
+                            mUsers.add(user);
                         }
                     }
                 }
@@ -122,5 +105,6 @@ public class MessageFragment extends Fragment {
             }
         });
     }
+
 
 }

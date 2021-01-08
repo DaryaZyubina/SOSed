@@ -30,7 +30,7 @@ import java.util.List;
 
 import ru.nsk.nsu.sosed.data.profile.ProfileEntity;
 import ru.nsk.nsu.sosed.model.Chat;
-import ru.nsk.nsu.sosed.representation.Ad.AdDetailsActivity;
+import ru.nsk.nsu.sosed.representation.view.ad.AdDetailsActivity;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
@@ -38,7 +38,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private List<ProfileEntity> mUsers;
     StorageReference image_Reference;
 
-    String lastMessage;
+    //String lastMessage;
 
     public UserAdapter(Context mContext, List<ProfileEntity> mUsers){
         this.mContext = mContext;
@@ -77,7 +77,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, MessageActivity.class);
-                //Log.d("ad details on click", "author uid & name" + ad.getAuthorId() + ad.getAuthorName());
                 intent.putExtra("useruid", user.getUid());
                 intent.putExtra("username", user.getName());
                 mContext.startActivity(intent);
@@ -93,19 +92,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView username;
         public ImageView profile_image;
-        private TextView last_msg;
+       // private TextView last_msg;
 
         public ViewHolder(View itemView){
             super(itemView);
 
             username = itemView.findViewById(R.id.username);
             profile_image = itemView.findViewById(R.id.profile_image);
-            last_msg = itemView.findViewById(R.id.last_msg);
+            //last_msg = itemView.findViewById(R.id.last_msg);
 
         }
     }
 
-    private void lastMessage(String userid, TextView last_msg){
+   /* private void lastMessage(String userid, TextView last_msg){
         lastMessage = "def";
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("chats");
@@ -139,6 +138,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
             }
         });
-    }
+    }*/
 
 }
