@@ -44,7 +44,6 @@ public class MessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_message, container, false);
 
-
         recyclerView = v.findViewById(R.id.recycler_view_message_with_users);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -95,8 +94,6 @@ public class MessageFragment extends Fragment {
 
                 for (DataSnapshot snapshot1 : snapshot.getChildren()){
                     user = snapshot1.getValue(ProfileEntity.class);
-                    System.out.println(user.getUid());
-                    System.out.println(user.getName());
 
                     //display 1 user from chats
                     for (String uid : usersList){
