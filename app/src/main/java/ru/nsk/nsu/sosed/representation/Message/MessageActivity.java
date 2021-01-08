@@ -88,8 +88,6 @@ public class MessageActivity extends AppCompatActivity {
         fUser = FirebaseAuth.getInstance().getCurrentUser(); //ты
         reference = FirebaseDatabase.getInstance().getReference("users").child(userUid);
 
-        image_Reference = FirebaseStorage.getInstance().getReference();
-
         btn_send.setOnClickListener(view -> {
             String msg = text_send.getText().toString();
             if (msg.equals("")){
@@ -124,6 +122,7 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void download_image(){
+        image_Reference = FirebaseStorage.getInstance().getReference();
         StorageReference profileRef = image_Reference.child("images/profiles/"+ user.getImageUrl());
         profileRef.getDownloadUrl().addOnSuccessListener(uri -> Glide.with(getApplicationContext()).load(uri).into(profile_image));
     }

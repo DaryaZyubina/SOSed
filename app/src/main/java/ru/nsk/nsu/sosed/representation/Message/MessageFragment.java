@@ -37,8 +37,6 @@ public class MessageFragment extends Fragment {
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
 
-    ProfileEntity user;
-
     private List<Chatlist> usersList;
 
     @Nullable
@@ -83,9 +81,9 @@ public class MessageFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 mUsers.clear();
-                for (DataSnapshot userSnapshot : snapshot.getChildren()){
-                    user = userSnapshot.getValue(ProfileEntity.class);
-                    user.setUid(userSnapshot.getKey());
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                    ProfileEntity user = snapshot1.getValue(ProfileEntity.class);
+                    user.setUid(snapshot1.getKey());
 
                     for (Chatlist chatlist : usersList){
                         if (user.getUid().equals(chatlist.getId())){
