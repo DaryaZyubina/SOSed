@@ -61,18 +61,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         image_Reference = FirebaseStorage.getInstance().getReference();
 
+        System.out.println(chat.getMessage());
         holder.show_message.setText(chat.getMessage());
 
         if (imageUrl == null) {       //ну или не дефолт -- null покатит
             holder.profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
         }else{
             StorageReference profileRef  = image_Reference.child("images/profiles/" + imageUrl);
-            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    Glide.with(mContext).load(imageUrl).into(holder.profile_image);
-                }
-            });
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Glide.with(mContext).load(imageUrl).into(holder.profile_image));
         }
 
        if (position == mChat.size()-1){
