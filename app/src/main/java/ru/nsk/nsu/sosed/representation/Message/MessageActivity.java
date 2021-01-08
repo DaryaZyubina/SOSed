@@ -166,11 +166,16 @@ public class MessageActivity extends AppCompatActivity {
                 .child(fUser.getUid())
                 .child(userUid);
 
+        final DatabaseReference chatRef_reciever = FirebaseDatabase.getInstance().getReference("chatlist")
+                .child(userUid)
+                .child(fUser.getUid());
+
         chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.exists()){
                     chatRef.child("id").setValue(userUid);
+                    chatRef_reciever.child("id").setValue(fUser.getUid());
                 }
             }
 
