@@ -19,5 +19,6 @@
     <string name="choose_apartment_text">Если вы хотите, чтобы другие жильцы дома могли присылать вам сообщения внутри приложения по номеру квартиры, введите номер вашей квартиры:</string>
     <string name="continue_text">Продолжить</string>
     <string name="skip_u"><u>Пропустить</u></string>
+    <string name="title_logout">Выйти</string>
 
 </resources>

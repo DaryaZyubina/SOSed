@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SOSed</string>
+    <string name="title_icon_hcs">HCS</string>
+    <string name="title_icon_ad">From Heighbours</string>
+    <string name="title_icon_message">Messages</string>
+    <string name="title_hcs">HCS\'s ads</string>
+    <string name="title_ad">Neighbours\'s ads</string>
+    <string name="title_home">Home</string>
+    <string name="title_profile">Profile</string>
+    <string-array name="ad_categories">
+        <item>Found Items</item>
+        <item>Lost Items</item>
+        <item>Other Ads</item>
+    </string-array>
+    <string name="message_author">Send to the author</string>
+    <string name="title_email">Email</string>
+    <string name="title_check">Allow to send messages to me</string>
+    <string name="choose_address_text">To start using the service, enter the address of your home:</string>
+    <string name="choose_apartment_text">If you want other residents of the house to be able to send you messages inside the app by apartment number, enter your apartment number:</string>
+    <string name="continue_text">Continue</string>
+    <string name="skip_u"><u>Skip</u></string>
+    <string name="title_logout">Log out</string>
+</resources>
