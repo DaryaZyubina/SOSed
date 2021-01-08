@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.representation.Ad;
+package ru.nsk.nsu.sosed.representation.view.ad;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.nsk.nsu.sosed.model.Ad;
+import ru.nsk.nsu.sosed.representation.viewmodel.AdViewModel;
+import ru.nsk.nsu.sosed.representation.adapter.AdAdapter;
 
 public class AdFragment extends Fragment {
 

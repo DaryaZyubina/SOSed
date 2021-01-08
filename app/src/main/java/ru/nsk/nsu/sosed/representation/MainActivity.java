@@ -10,25 +10,22 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-import ru.nsk.nsu.sosed.representation.Ad.AdFragment;
-import ru.nsk.nsu.sosed.representation.Ad.StartAdFragment;
-import ru.nsk.nsu.sosed.representation.Auth.CompleteAuthFragment;
+import ru.nsk.nsu.sosed.representation.view.ad.AdFragment;
+import ru.nsk.nsu.sosed.representation.view.ad.StartAdFragment;
 import ru.nsk.nsu.sosed.representation.Message.MessageFragment;
 
 import com.example.sosed.R;
 
-import ru.nsk.nsu.sosed.representation.Profile.ProfileFragment;
-import ru.nsk.nsu.sosed.representation.Auth.AuthFBActivity;
+import ru.nsk.nsu.sosed.representation.view.profile.ProfileFragment;
+import ru.nsk.nsu.sosed.representation.view.auth.AuthFBActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.FirebaseUserMetadata;
-import com.google.firebase.auth.UserInfo;
 
 public class MainActivity extends AppCompatActivity {
 

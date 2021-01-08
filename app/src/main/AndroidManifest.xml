@@ -27,10 +27,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="ru.nsk.nsu.sosed.representation.Auth.AuthFBActivity"
+        <activity android:name="ru.nsk.nsu.sosed.representation.view.auth.AuthFBActivity"
             android:parentActivityName="ru.nsk.nsu.sosed.representation.MainActivity">
         </activity>
-        <activity android:name="ru.nsk.nsu.sosed.representation.Ad.AdDetailsActivity"
+        <activity android:name="ru.nsk.nsu.sosed.representation.view.ad.AdDetailsActivity"
             android:parentActivityName="ru.nsk.nsu.sosed.representation.MainActivity">
         </activity>
 

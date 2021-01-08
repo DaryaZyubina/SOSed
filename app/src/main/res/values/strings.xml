@@ -12,6 +12,7 @@
         <item>Потерянные вещи</item>
         <item>Другие объявления</item>
     </string-array>
+    <string name="message_author">Написать автору</string>
     <string name="title_email">Электронная почта</string>
     <string name="title_check">Разрешить присылать мне сообщения по номеру квартиры</string>
     <string name="choose_address_text">Для того, чтобы начать пользоваться сервисом, введите адрес вашего дома:</string>

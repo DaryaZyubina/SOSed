@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.representation.Profile;
+package ru.nsk.nsu.sosed.representation.view.profile;
 
 import android.app.ProgressDialog;
 import android.content.Intent;

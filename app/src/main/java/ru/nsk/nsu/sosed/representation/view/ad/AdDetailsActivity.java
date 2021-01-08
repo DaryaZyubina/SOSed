@@ -1,10 +1,9 @@
-package ru.nsk.nsu.sosed.representation.Ad;
+package ru.nsk.nsu.sosed.representation.view.ad;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;

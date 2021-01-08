@@ -43,7 +43,7 @@ public class MessageFragment extends Fragment {
     @Nullable
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_message, container, false);
-
+        getActivity().setTitle(getResources().getString(R.string.title_icon_message));
 
         recyclerView = v.findViewById(R.id.recycler_view_message_with_users);
         recyclerView.setHasFixedSize(true);
@@ -93,16 +93,15 @@ public class MessageFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 mUsers.clear();
 
-                for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    user = snapshot1.getValue(ProfileEntity.class);
-                    System.out.println(user.getUid());
-                    System.out.println(user.getName());
-
+                for (DataSnapshot userSnapshot : snapshot.getChildren()){
+                    user = userSnapshot.getValue(ProfileEntity.class);
+                    user.setUid(userSnapshot.getKey());
                     //display 1 user from chats
                     for (String uid : usersList){
                         if (user.getUid().equals(uid)){
                             if (mUsers.size() != 0){
                                 for (ProfileEntity user1 : mUsers){
+
                                     if (!user.getUid().equals(user1.getUid())){
                                         mUsers.add(user);
                                     }

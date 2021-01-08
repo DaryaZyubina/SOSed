@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.representation.Auth;
+package ru.nsk.nsu.sosed.representation.view.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import ru.nsk.nsu.sosed.data.profile.ProfileEntity;
-import ru.nsk.nsu.sosed.representation.Ad.AdFragment;
-import ru.nsk.nsu.sosed.representation.Ad.AdViewModel;
+import ru.nsk.nsu.sosed.representation.viewmodel.AuthViewModel;
 import ru.nsk.nsu.sosed.representation.MainActivity;
 import com.example.sosed.R;
 import com.firebase.ui.auth.AuthUI;

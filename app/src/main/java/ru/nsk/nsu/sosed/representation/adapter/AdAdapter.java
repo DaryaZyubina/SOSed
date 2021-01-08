@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.representation.Ad;
+package ru.nsk.nsu.sosed.representation.adapter;
 
 import android.content.Intent;
 import android.util.Log;
@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 import ru.nsk.nsu.sosed.model.Ad;
+import ru.nsk.nsu.sosed.representation.view.ad.AdDetailsActivity;
 
 public class AdAdapter extends RecyclerView.Adapter<AdAdapter.AdViewHolder> {
 

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ru.nsk.nsu.sosed.representation.Auth.CompleteAuthFragment">
+    tools:context="ru.nsk.nsu.sosed.representation.view.auth.CompleteAuthFragment">
 
     <TextView
         android:id="@+id/address_textView"

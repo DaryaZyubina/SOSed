@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.representation.Ad;
+package ru.nsk.nsu.sosed.representation.view.ad;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -29,6 +29,8 @@ import java.util.Date;
 import java.util.UUID;
 
 import ru.nsk.nsu.sosed.model.Ad;
+import ru.nsk.nsu.sosed.representation.view.ad.AdFragment;
+import ru.nsk.nsu.sosed.representation.viewmodel.AdViewModel;
 
 import static android.app.Activity.RESULT_OK;
 

@@ -1,7 +1,6 @@
-package ru.nsk.nsu.sosed.representation.Auth;
+package ru.nsk.nsu.sosed.representation.view.auth;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +10,14 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sosed.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.List;
-
 import ru.nsk.nsu.sosed.data.profile.ProfileEntity;
-import ru.nsk.nsu.sosed.model.Ad;
-import ru.nsk.nsu.sosed.representation.Ad.AdAdapter;
-import ru.nsk.nsu.sosed.representation.Ad.AdViewModel;
-import ru.nsk.nsu.sosed.representation.Ad.NewAdFragment;
+import ru.nsk.nsu.sosed.representation.viewmodel.AuthViewModel;
 
 public class CompleteAuthFragment extends Fragment {
     AuthViewModel viewModel;

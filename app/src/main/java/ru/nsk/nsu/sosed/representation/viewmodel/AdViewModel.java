@@ -1,4 +1,4 @@
-package ru.nsk.nsu.sosed.representation.Ad;
+package ru.nsk.nsu.sosed.representation.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

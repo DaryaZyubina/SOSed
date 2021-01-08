@@ -28,7 +28,7 @@ public class ProfileEntity {
         this.imageUrl = imageUrl;
     }
 
-   // @Exclude
+    @Exclude
     public String getUid() {
         return uid;
     }
@@ -36,6 +36,7 @@ public class ProfileEntity {
     public void setUid(String uid) {
         this.uid = uid;
     }
+
     public String getName() {
         return name;
     }
