@@ -114,7 +114,6 @@ public class MessageActivity extends AppCompatActivity {
                 }else{
                     download_image();
                 }
-
                 readMessages(fUser.getUid(), userUid, user.getImageUrl());
             }
 
@@ -123,6 +122,8 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
+
+        seenMessage(userUid);
     }
 
     private void download_image(){
