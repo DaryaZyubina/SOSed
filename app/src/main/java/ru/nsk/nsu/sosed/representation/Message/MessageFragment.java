@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.nsk.nsu.sosed.data.profile.ProfileEntity;
-import ru.nsk.nsu.sosed.model.Chat;
 import ru.nsk.nsu.sosed.model.Chatlist;
 
 public class MessageFragment extends Fragment {
@@ -95,7 +94,7 @@ public class MessageFragment extends Fragment {
                     }
                 }
 
-                userAdapter = new UserAdapter(getContext(), mUsers);
+                userAdapter = new UserAdapter(getContext(), mUsers, true);
                 recyclerView.setAdapter(userAdapter);
             }
 
