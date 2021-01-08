@@ -92,7 +92,10 @@ public class MessageActivity extends AppCompatActivity {
         btn_send.setOnClickListener(view -> {
             String msg = text_send.getText().toString();
             if (msg.equals("")){
-                Toast.makeText(MessageActivity.this, "Вы не можете отправить пустое сообщение", Toast.LENGTH_SHORT).show();
+                if ((getResources().getConfiguration().locale.getLanguage().equals("ru")))
+                    Toast.makeText(MessageActivity.this, "Вы не можете отправить пустое сообщение", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(MessageActivity.this, "You cannot send an empty message", Toast.LENGTH_SHORT).show();
             }else{
                 sendMessage(fUser.getUid(), userUid, msg);
             }
@@ -105,8 +108,13 @@ public class MessageActivity extends AppCompatActivity {
                 user = snapshot.getValue(ProfileEntity.class);
 
                 if (!user.getMessagingEnabled()){
-                    Toast.makeText(MessageActivity.this, "Автор этого объявления не разрешил обмен сообщениями в приложении", Toast.LENGTH_SHORT).show();
-                    finish();
+                    if ((getResources().getConfiguration().locale.getLanguage().equals("ru"))){
+                        Toast.makeText(MessageActivity.this, "Автор этого объявления не разрешил обмен сообщениями в приложении", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else{
+                        Toast.makeText(MessageActivity.this, "The author of this ad did not allow messaging in the app", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 }
                 if (user.getImageUrl() == null) {
                     profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
