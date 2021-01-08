@@ -107,17 +107,13 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 user = snapshot.getValue(ProfileEntity.class);
-                //username.setText(user.getName());  -- если будем передавать только уид
 
                 if (user.getImageUrl() == null) {       //ну или не дефолт -- null покатит
                     profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
 
                 }else{
-                   // profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
                     download_image();
-                    //Glide.with(getApplicationContext()).load(user.getImageUrl()).into(profile_image);
                 }
-
                 readMessages(fUser.getUid(), userUid, user.getImageUrl());
             }
 
@@ -126,10 +122,11 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
+
+        seenMessage(userUid);
     }
 
     private void download_image(){
-        System.out.println(user.getImageUrl());
         StorageReference profileRef = image_Reference.child("images/profiles/"+ user.getImageUrl());
         profileRef.getDownloadUrl().addOnSuccessListener(uri -> Glide.with(getApplicationContext()).load(uri).into(profile_image));
     }

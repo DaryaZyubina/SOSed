@@ -67,7 +67,6 @@ public class AdDetailsActivity extends AppCompatActivity {
             Intent intent = new Intent(AdDetailsActivity.this, MessageActivity.class);
             Log.d("ad details on click", "author uid & name" + ad.getAuthorId() + ad.getAuthorName());
             intent.putExtra("useruid", ad.getAuthorId());
-            //крч надо передать уид кому пишем
             intent.putExtra("username", author.getText());
             startActivity(intent);
         });

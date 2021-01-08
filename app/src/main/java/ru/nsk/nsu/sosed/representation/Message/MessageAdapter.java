@@ -1,6 +1,7 @@
 package ru.nsk.nsu.sosed.representation.Message;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.sosed.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
@@ -29,6 +33,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     private String imageUrl;
 
     StorageReference storageReference;
+    StorageReference image_Reference;
 
     FirebaseUser firebaseUser;
 
@@ -54,23 +59,21 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position) {
         Chat chat = mChat.get(position);
 
+        image_Reference = FirebaseStorage.getInstance().getReference();
+
         holder.show_message.setText(chat.getMessage());
 
-        holder.profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
-
-
-       /* if (imageUrl.equals("default")){
+        if (imageUrl == null) {       //ну или не дефолт -- null покатит
             holder.profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
         }else{
-            //download_image();
-            StorageReference profileRef  = storageReference.child("images/profiles/" + user.getImageUrl());
+            StorageReference profileRef  = image_Reference.child("images/profiles/" + imageUrl);
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
                     Glide.with(mContext).load(imageUrl).into(holder.profile_image);
                 }
             });
-        }*/
+        }
 
        if (position == mChat.size()-1){
            if (chat.isIsseen()){

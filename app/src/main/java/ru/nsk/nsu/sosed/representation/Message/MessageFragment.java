@@ -101,7 +101,6 @@ public class MessageFragment extends Fragment {
                         if (user.getUid().equals(uid)){
                             if (mUsers.size() != 0){
                                 for (ProfileEntity user1 : mUsers){
-
                                     if (!user.getUid().equals(user1.getUid())){
                                         mUsers.add(user);
                                     }

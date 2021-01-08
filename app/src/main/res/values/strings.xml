@@ -14,7 +14,7 @@
     </string-array>
     <string name="message_author">Написать автору</string>
     <string name="title_email">Электронная почта</string>
-    <string name="title_check">Разрешить присылать мне сообщения по номеру квартиры</string>
+    <string name="title_check">Разрешить присылать мне сообщения</string>
     <string name="choose_address_text">Для того, чтобы начать пользоваться сервисом, введите адрес вашего дома:</string>
     <string name="choose_apartment_text">Если вы хотите, чтобы другие жильцы дома могли присылать вам сообщения внутри приложения по номеру квартиры, введите номер вашей квартиры:</string>
     <string name="continue_text">Продолжить</string>
