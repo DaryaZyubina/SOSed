@@ -36,6 +36,8 @@ public class MessageFragment extends Fragment {
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
 
+    ProfileEntity user;
+
     private List<String> usersList;
 
     @Nullable
@@ -92,11 +94,13 @@ public class MessageFragment extends Fragment {
                 mUsers.clear();
 
                 for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    ProfileEntity user = snapshot1.getValue(ProfileEntity.class);
+                    user = snapshot1.getValue(ProfileEntity.class);
+                    System.out.println(user.getUid());
+                    System.out.println(user.getName());
 
                     //display 1 user from chats
-                    for (String id : usersList){
-                        if (user.getUid().equals(id)){
+                    for (String uid : usersList){
+                        if (user.getUid().equals(uid)){
                             if (mUsers.size() != 0){
                                 for (ProfileEntity user1 : mUsers){
                                     if (!user.getUid().equals(user1.getUid())){

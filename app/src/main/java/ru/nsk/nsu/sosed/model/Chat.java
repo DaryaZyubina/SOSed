@@ -7,6 +7,8 @@ public class Chat {
     private String message;
     private boolean isseen;
 
+    public Chat(){}
+
     public Chat(String sender, String reciever, String message, boolean isseen) {
         this.sender = sender;
         this.reciever = reciever;

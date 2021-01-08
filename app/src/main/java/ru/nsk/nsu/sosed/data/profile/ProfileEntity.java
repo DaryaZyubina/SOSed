@@ -17,7 +17,18 @@ public class ProfileEntity {
 
     public ProfileEntity() {
     }
-    @Exclude
+
+    public ProfileEntity(String uid, String name, String email, String apartmentNum, String house, Boolean messagingEnabled, String imageUrl) {
+        this.uid = uid;
+        this.name = name;
+        this.email = email;
+        this.apartmentNum = apartmentNum;
+        this.house = house;
+        this.messagingEnabled = messagingEnabled;
+        this.imageUrl = imageUrl;
+    }
+
+   // @Exclude
     public String getUid() {
         return uid;
     }

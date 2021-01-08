@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class MessageActivity extends AppCompatActivity {
 
     FirebaseUser fUser;
     DatabaseReference reference;
-    StorageReference storageReference;
+    StorageReference image_Reference;
 
     Intent intent;
     String userUid;
@@ -90,6 +91,8 @@ public class MessageActivity extends AppCompatActivity {
         fUser = FirebaseAuth.getInstance().getCurrentUser(); //ты
         reference = FirebaseDatabase.getInstance().getReference("users").child(userUid);
 
+        image_Reference = FirebaseStorage.getInstance().getReference();
+
         btn_send.setOnClickListener(view -> {
             String msg = text_send.getText().toString();
             if (msg.equals("")){
@@ -108,9 +111,10 @@ public class MessageActivity extends AppCompatActivity {
 
                 if (user.getImageUrl() == null) {       //ну или не дефолт -- null покатит
                     profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
+
                 }else{
-                    profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
-                    //download_image();
+                   // profile_image.setImageResource(R.drawable.ic_baseline_account_box_24);
+                    download_image();
                     //Glide.with(getApplicationContext()).load(user.getImageUrl()).into(profile_image);
                 }
 
@@ -125,8 +129,9 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void download_image(){
-            StorageReference profileRef = storageReference.child("images/profiles/" + user.getImageUrl());
-            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Glide.with(getApplicationContext()).load(uri).into(profile_image));
+        System.out.println(user.getImageUrl());
+        StorageReference profileRef = image_Reference.child("images/profiles/"+ user.getImageUrl());
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Glide.with(getApplicationContext()).load(uri).into(profile_image));
     }
 
     private void seenMessage(String userid){
