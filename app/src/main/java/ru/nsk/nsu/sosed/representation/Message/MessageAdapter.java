@@ -61,6 +61,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         image_Reference = FirebaseStorage.getInstance().getReference();
 
+
         holder.show_message.setText(chat.getMessage());
 
         if (imageUrl == null) {       //ну или не дефолт -- null покатит

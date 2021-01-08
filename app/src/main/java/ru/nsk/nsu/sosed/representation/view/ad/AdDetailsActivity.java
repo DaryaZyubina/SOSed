@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sosed.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -22,7 +24,6 @@ import ru.nsk.nsu.sosed.representation.Message.MessageActivity;
 
 public class AdDetailsActivity extends AppCompatActivity {
 
-    //TextView title;
     TextView text;
     ImageView photoAttached;
     TextView createdDate;
@@ -61,6 +62,10 @@ public class AdDetailsActivity extends AppCompatActivity {
                 Log.d("ad details on create", "author uid & name" + ad.getAuthorId() + ad.getAuthorName());
                 if (imageUrl!=null) download_image(imageUrl);
             }
+        }
+
+        if(FirebaseAuth.getInstance().getCurrentUser().getUid().equals(ad.getAuthorId())){
+            messageButton.setVisibility(View.GONE);
         }
 
         messageButton.setOnClickListener(view -> {

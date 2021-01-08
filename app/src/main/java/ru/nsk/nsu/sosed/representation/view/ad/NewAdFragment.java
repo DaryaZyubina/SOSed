@@ -71,7 +71,7 @@ public class NewAdFragment extends Fragment {
 
         newAd = new Ad();
         newAd.setAuthorName(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-        newAd.setAuthorName(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        newAd.setAuthorId(FirebaseAuth.getInstance().getCurrentUser().getUid());
         newAd.setCreatedDate(new Date(System.currentTimeMillis()));
         newAd.setTopic(category+1);
 

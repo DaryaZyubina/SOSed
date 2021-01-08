@@ -40,22 +40,21 @@ public class AdFragment extends Fragment {
         category = bundle.getInt("ad");
         Log.i("ad fragment", "category: " + category);
         String[] categories = getResources().getStringArray(R.array.ad_categories);
+        recyclerView = v.findViewById(R.id.recycler_view_ads);
+        addAd = v.findViewById(R.id.add_ad_fab);
         if (category==-1){
             getActivity().setTitle(getString(R.string.title_hcs));
+            addAd.setVisibility(View.GONE);
         }
         if (0 < category && category < categories.length) {
             getActivity().setTitle(categories[category]);
         }
-        recyclerView = v.findViewById(R.id.recycler_view_ads);
-        addAd = v.findViewById(R.id.add_ad_fab);
-        addAd.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("ad", category);
-                Fragment fragment = new NewAdFragment();
-                fragment.setArguments(bundle);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
-            }
+        addAd.setOnClickListener(v1 -> {
+            Bundle bundle1 = new Bundle();
+            bundle1.putInt("ad", category);
+            Fragment fragment = new NewAdFragment();
+            fragment.setArguments(bundle1);
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
         });
 
         return v;
@@ -66,28 +65,15 @@ public class AdFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         AdViewModel viewModel = new ViewModelProvider(this).get(AdViewModel.class);
-        viewModel.getAds().observe(getViewLifecycleOwner(), new Observer<List<Ad>>() {
-            @Override
-            public void onChanged(@Nullable List<Ad> ads) {
-                List<Ad> adsFiltered = getAdsFiltered(ads);
-                recyclerView.setAdapter(new AdAdapter(adsFiltered));
-            }
+        viewModel.getAds().observe(getViewLifecycleOwner(), ads -> {
+            List<Ad> adsFiltered = getAdsFiltered(ads);
+            recyclerView.setAdapter(new AdAdapter(adsFiltered));
         });
     }
 
-    private List<Ad> getAdsFiltered(List<Ad> ads){ //todo: перенести во viewModel?
+    private List<Ad> getAdsFiltered(List<Ad> ads){
         int topic = category+1;
-        /*String[] categories = getResources().getStringArray(R.array.ad_categories);
-        int topic=-1;
-        if(category.equals("ЖКХ")){
-            topic = 0;
-        }
-        for(int i=0; i<categories.length; i++){
-            if (categories[i].equals(category)){
-                topic = i+1;
-            }
-        }*/
-        List<Ad> adsFiltered = new ArrayList<Ad>();
+        List<Ad> adsFiltered = new ArrayList<>();
         for(Ad a:ads){
             if(a.getTopic()==topic){
                 adsFiltered.add(a);

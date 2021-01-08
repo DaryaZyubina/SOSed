@@ -105,5 +105,4 @@ public class MessageFragment extends Fragment {
         });
     }
 
-
 }
